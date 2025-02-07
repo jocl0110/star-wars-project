@@ -3,17 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <title>Who is Taller? - Star Wars Game</title>
   </head>
   <body>
     <script src="../js/navbar.js"></script>
     <div>
       <h1>Who is Taller?</h1>
-      <button>Start Game</button>
-      <div>
-        <div></div>
+      <button class="start-game-btn" id="start-game-btn">Start Game</button>
+      <div id="game">
+        <div id="first-character">
+          <img src="" alt="Character 1" id="char1-img" />
+          <p id="char1-name">Loading...</p>
+          <button id="guess1">Select</button>
+        </div>
         <p>VS</p>
-        <div></div>
+        <div id="second-character">
+          <img src="" alt="Character 2" id="char2-img" />
+          <p id="char2-name">Loading...</p>
+          <button id="guess2">Select</button>
+        </div>
+        <p id="result"></p>
+        <button id="play-again-btn">Play Again</button>
       </div>
     </div>
     <script src="../js/audio.js"></script>
