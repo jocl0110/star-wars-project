@@ -54,3 +54,44 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Fetch Data
+// Variables
+const search_btn = document.getElementById("search_btn");
+const search_input = document.getElementById("characterInput");
+const resultDiv = document.getElementById("fetchedData");
+
+async function fetchData() {
+  const characterName = search_input.value.trim();
+  console.log("Searching for ", characterName);
+
+  if (characterName === "") {
+    resultDiv.innerHTML = "<p>Please enter a character name.</p>";
+    return;
+  }
+  try {
+    const response = await fetch(
+      `https://www.swapi.tech/api/people/?name=${characterName}`
+    );
+    const data = await response.json();
+    console.log(data);
+    const character = data.result[0];
+    console.log(character);
+
+    resultDiv.innerHTML = `
+    <h2>${character.properties.name}</h2>
+    <p><strong>Height:</strong> ${character.properties.height} cm</p>
+            <p><strong>Mass:</strong> ${character.properties.mass} kg</p>
+                <p><strong>Hair Color:</strong> ${character.properties.hair_color}</p>
+                <p><strong>Skin Color:</strong> ${character.properties.skin_color}</p>
+                <p><strong>Eye Color:</strong> ${character.properties.eye_color}</p>
+                <p><strong>Birth Year:</strong> ${character.properties.birth_year}</p>
+                <p><strong>Gender:</strong> ${character.properties.gender}</p>
+    `;
+  } catch (error) {
+    resultDiv.innerHTML = `<p>Error fetching data. Please try again later.</p>`;
+    console.error("Fetch error: ", error);
+  }
+}
+
+search_btn.addEventListener("click", fetchData);
